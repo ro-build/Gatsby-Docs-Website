@@ -14,19 +14,35 @@ const Header = ({ siteTitle }) => (
         margin: `0 auto`,
         maxWidth: 960,
         padding: `1.45rem 1.0875rem`,
+        display: `flex`,
+        alignItems: `center`,
+        justifyContent: `space-between`,
       }}
     >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
-          {siteTitle}
-        </Link>
-      </h1>
+      <Link
+        to="/"
+        style={{
+          color: `white`,
+          textDecoration: `none`,
+          fontSize: `2rem`,
+        }}
+      >
+        {siteTitle}
+      </Link>
+      <nav>
+        <ul style={{ 
+                    margin: 0,
+                    display: `flex`,
+                    alignItems: `center`,
+                  }}>
+          <li style={{
+                      listStyle: `none`,
+                      marginBottom: `0`
+                    }}>
+            <Link to="/userGuideListing"  style={{color: `white`}}>User Guides</Link>
+          </li>
+        </ul>
+      </nav>
     </div>
   </header>
 )
