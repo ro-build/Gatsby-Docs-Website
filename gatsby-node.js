@@ -46,14 +46,29 @@ exports.createPages = ({ graphql, actions }) => {
       const guide = result.data.allKenticoCloudItemUserGuide.edges;
       guide.forEach(( { node } ) => {
         createPage({
-          path: node.fields.slug,
+          path: `${node.fields.slug}`,
           component: path.resolve(`src/templates/userGuide.js`),
           context: {
-            slug: node.fields.slug,
+            slug: `${node.fields.slug}`,
           },
         })
       });
       resolve();
     })
   })
+}
+
+// Implement the Gatsby API “onCreatePage”. This is
+// called after every page is created.
+exports.onCreatePage = async ({ page, actions }) => {
+  const { createPage } = actions
+
+  // page.matchPath is a special key that's used for matching pages
+  // only on the client.
+  if (page.path.match(/^\/app/)) {
+    page.matchPath = "/app/*"
+
+    // Update the page.
+    createPage(page)
+  }
 }
