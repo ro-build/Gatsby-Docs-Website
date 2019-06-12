@@ -1,5 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
+import { isLoggedIn } from "../services/auth"
+import Login from "../components/login"
 
 import Layout from "../components/layout"
 
@@ -29,16 +31,23 @@ const UserGuide = ({ data }) => {
 
   return (
     <Layout>
-      <h1>{item.title.value}</h1>
-      <h2>Summary</h2>
-      <span>Created by: {item.author.value} - {item.date_published.value}</span>
-      <div dangerouslySetInnerHTML={{ __html: item.summary.value }} />
-      <h2>Implementation Notes</h2>
-      <div dangerouslySetInnerHTML={{ __html: item.implementation_notes.value }} />
-      <h2>Steps</h2>
-      <ul>
-        { stepsList }
-      </ul>
+      { isLoggedIn() &&
+      <>
+        <h1>{item.title.value}</h1>
+        <h2>Summary</h2>
+        <span>Created by: {item.author.value} - {item.date_published.value}</span>
+        <div dangerouslySetInnerHTML={{ __html: item.summary.value }} />
+        <h2>Implementation Notes</h2>
+        <div dangerouslySetInnerHTML={{ __html: item.implementation_notes.value }} />
+        <h2>Steps</h2>
+        <ul>
+          { stepsList }
+        </ul>
+      </>
+      }
+      { !isLoggedIn() &&
+        <Login path="/user-guides/login" />
+      }
     </Layout>
   )
 }

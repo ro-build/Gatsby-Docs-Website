@@ -1,8 +1,6 @@
 import React from "react"
 import { StaticQuery, graphql, Link } from "gatsby"
 
-import Layout from "./layout"
-
 const UserGuideListing = () => (
   <StaticQuery
     query={graphql`

@@ -41,7 +41,7 @@ const Header = ({ siteTitle }) => {
                         listStyle: `none`,
                         margin: `0 1.5rem 0`,
                       }}>
-              <Link to="/app/userGuides"  style={{color: `white`}}>User Guides</Link>
+              <Link to="/user-guides"  style={{color: `white`}}>User Guides</Link>
             </li>
             <li style={{
                         listStyle: `none`,
@@ -52,7 +52,7 @@ const Header = ({ siteTitle }) => {
                 href="/"
                 onClick={event => {
                   event.preventDefault()
-                  logout(() => navigate(`/app/login`))
+                  logout(() => navigate(`/user-guides/login`))
                 }}
               >
                 Logout
