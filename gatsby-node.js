@@ -16,6 +16,20 @@ exports.onCreateNode = ({ node, actions: { createNodeField }}) => {
   }
 }
 
+// Implement the Gatsby API “onCreatePage”. This is
+// called after every page is created.
+exports.onCreatePage = async ({ page, actions }) => {
+  const { createPage } = actions
+
+  // page.matchPath is a special key that's used for matching pages
+  // only on the client.
+  if (page.path.match(/^\/user-guides/)) {
+    page.matchPath = "/user-guides/*/"
+    // Update the page.
+    createPage(page)
+  }
+}
+
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
 
@@ -56,20 +70,4 @@ exports.createPages = ({ graphql, actions }) => {
       resolve();
     })
   })
-}
-
-// Implement the Gatsby API “onCreatePage”. This is
-// called after every page is created.
-exports.onCreatePage = async ({ page, actions }) => {
-  const { createPage } = actions
-
-  // page.matchPath is a special key that's used for matching pages
-  // only on the client.
-  console.log(page);
-  if (page.path.match(/^\/user-guides/)) {
-    page.matchPath = "/user-guides/*"
-    console.log(page);
-    // Update the page.
-    createPage(page)
-  }
 }
